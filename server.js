@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port = process.env.PORT || 3000;
 var app = express();
 app.set('view engine','hbs');
 
@@ -20,9 +21,9 @@ app.use((req, res, next) => {
 });
 
 
-app.use((req,res,next)=>{
-    res.render('maintainance.hbs');
-})
+// app.use((req,res,next)=>{
+//     res.render('maintainance.hbs');
+// })
 
 app.use(express.static(__dirname + '/public'));
 
@@ -58,8 +59,16 @@ app.get('/about',(req,res)=>{
     });
 });
 
+app.get('/project',(req,res)=>{
+    res.render('project.hbs',{
+        pageTitle : 'project Page',
+       
+    });
+});
 
 
-app.listen(3000,() => {
-console.log('server set on port no 3000');
+
+
+app.listen(port,() => {
+console.log(`server set on port no ${port}`);
 });
